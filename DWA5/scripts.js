@@ -46,6 +46,6 @@ form.addEventListener("submit", (event) => {
   }
   // If none of the above conditions are met, perform the division and display the result
   else {
-    result.innerText = Math.round(dividend / divider);
+    result.innerText = Math.floor(dividend / divider);
   }
 });
