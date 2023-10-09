@@ -55,7 +55,7 @@ const bookButton = () => {
 };
 
 // This function will open up a preview of the targeted book
-           nconst viewBook = (event) => {
+const viewBook = (event) => {
   const { target } = event;
   if (selectors.bookView.open === false) {
     selectors.bookView.showModal();
