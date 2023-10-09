@@ -1,8 +1,10 @@
 
 
-Selectors Object: I've created an object called selectors that abstracts the selection of HTML elements using CSS selectors. Instead of repeatedly calling document.querySelector throughout your 
-code, you define these selectors once in an object, making it 
-easier to access and manipulate the elements.
+Selectors Object: I've created an object called selectors that 
+abstracts the selection of HTML elements using CSS selectors. 
+Instead of repeatedly calling document.querySelector throughout 
+your code, you define these selectors once in an object, 
+making it easier to access and manipulate the elements.
 
 Functions for Reusability: I've defined several functions 
 like bookButton, viewBook, createPreviewsFragment, 
