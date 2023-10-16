@@ -1,5 +1,6 @@
 // imports used for calling information from data.js
 import { BOOKS_PER_PAGE, authors, genres, books } from "./data.js";
+import { viewBook } from "./web_component.js";
 
 // Object with HTML elements needed for selection and manipulation
 const selectors = {
@@ -75,8 +76,15 @@ const viewBook = (event) => {
         authors[book.author]
       } (${new Date(book.published).getFullYear()})`;
       selectors.bookDescriptionView.textContent = book.description;
+      dataObje.image = book.image;
+      dataObje.previewTitle = book.title;
+      dataObje.previewSubtitle = `${authors[book.author]} (${new Date(
+        book.published
+      ).getFullYear()})`;
+      dataObje.previewDescription = book.description;
     }
   }
+  console.log(dataObje);
 };
 
 // page and frag variable for use in createPreviewsFragment() function
