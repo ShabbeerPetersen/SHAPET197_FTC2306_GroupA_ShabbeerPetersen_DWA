@@ -1,5 +1,7 @@
-import { books, authors } from "./data.js";
-import { selectors } from "./scripts.js";
+//@ts-check
+
+// import { books, authors } from "./data.js";
+// import { selectors } from "./scripts.js";
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -242,6 +244,7 @@ template.innerHTML = `
 
 class Component extends HTMLElement {
   constructor() {
+    super();
     const shadow = this.attachShadow({ mode: "open" });
     shadow.append(template.content.cloneNode(true));
     shadow.querySelector("[data-list-image]").src = dataObje.image;

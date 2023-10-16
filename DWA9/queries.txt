@@ -1,0 +1,5 @@
+remembering to link files and import/export relevant data
+
+search, settings, show more, for reusability, mainatainability and encapsulation
+
+small projects
