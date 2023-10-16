@@ -1,3 +1,5 @@
+//@ts-check
+
 // imports used for calling information from data.js
 import { BOOKS_PER_PAGE, authors, genres, books } from "./data.js";
 
