@@ -46,42 +46,40 @@ const night = {
   light: "10, 10, 20",
 };
 
-// This function adds the .preview class to all book
-// buttons and then adds a click event listener and function
-
-const bookButton = () => {
-  selectors.oneBook = document.querySelectorAll(".preview"); // .preview located in css
-  for (let button of selectors.oneBook) {
-    button.addEventListener("click", viewBook);
+// Encapsulated BookPreview class for book previews
+class BookPreview {
+  constructor(bookData, clickHandler) {
+    this.bookData = bookData;
+    this.clickHandler = clickHandler;
+    this.previewElement = this.createPreviewElement();
+    this.attachClickEvent();
   }
-};
 
-// This function will open up a preview of the targeted book
-const viewBook = (event) => {
-  const { target } = event;
-  if (selectors.bookView.open === false) {
-    selectors.bookView.showModal();
-  } else if (target === selectors.bookCloseView) {
-    selectors.bookView.close();
+  createPreviewElement() {
+    const { id, image, title, author } = this.bookData;
+    const preview = document.createElement("button");
+    preview.classList = "preview";
+    preview.setAttribute("data-preview", id);
+    preview.innerHTML = `
+      <img class="preview__image" src="${image}" />
+      <div class="preview__info">
+        <h3 class="preview__title">${title}</h3>
+        <div class="preview__author">${author}</div>
+      </div>
+    `;
+    return preview;
   }
-  for (const book of books) {
-    if (
-      target.getAttribute("data-preview") === book.id ||
-      target.parentNode.parentNode.getAttribute("data-preview") === book.id ||
-      target.parentNode.getAttribute("data-preview") === book.id
-    ) {
-      selectors.bookImageView.src = book.image;
-      selectors.viewBlur.src = book.image;
-      selectors.bookTitleView.textContent = book.title;
-      selectors.bookSubtitleView.textContent = `${
-        authors[book.author]
-      } (${new Date(book.published).getFullYear()})`;
-      selectors.bookDescriptionView.textContent = book.description;
-    }
-  }
-};
 
-// page and frag variable for use in createPreviewsFragment() function
+  attachClickEvent() {
+    this.previewElement.addEventListener("click", this.clickHandler);
+  }
+
+  getPreviewElement() {
+    return this.previewElement;
+  }
+}
+
+// Page and frag variable for use in createPreviewsFragment() function
 let page = 0;
 const frag = document.createDocumentFragment();
 
@@ -140,14 +138,13 @@ const themeUpdate = (event) => {
   document.querySelector("[data-settings-overlay]").close();
 };
 
-// selector to set the theme to the same as user device
+// Selector to set the theme to the same as the user's device
 selectors.themeSettings.value =
   window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").books
     ? "day"
     : "night";
 
-// selector to change the theme when the user saves their
-//choice
+// Selector to change the theme when the user saves their choice
 selectors.settingsSave.addEventListener("submit", themeUpdate);
 
 // This function adds more books to the HTML via 'show more' button.
@@ -176,7 +173,7 @@ const searchFunctions = (event) => {
   }
 };
 
-// This function alters the html using the search parameters created by the user.
+// This function alters the HTML using the search parameters created by the user.
 const createSearchHTML = (event) => {
   event.preventDefault();
   selectors.searchMenu.close();
@@ -215,18 +212,18 @@ const createSearchHTML = (event) => {
 };
 console.log("ShabbeerPetersenWasHere");
 
-// variable booksPerPage used to load first 36 books
+// Variable booksPerPage used to load the first 36 books
 const booksPerPage = [0, BOOKS_PER_PAGE];
 
-// This variable works with the more button to determine
-//how many books remain after loading the first 36
+// This variable works with the "Show more" button to determine
+// how many books remain after loading the first 36
 const PAGE = 1;
 
 if (!books && !Array.isArray(books)) throw new Error("Source required");
 if (!booksPerPage && booksPerPage.length < 2)
   throw new Error("Range must be an array with two numbers");
 
-// Adds the first 36 books to webpage
+// Adds the first 36 books to the webpage
 selectors.dataListItems.appendChild(
   createPreviewsFragment(books, booksPerPage[0], booksPerPage[1])
 );
@@ -246,7 +243,7 @@ selectors.searchCancel.addEventListener("click", searchFunctions);
 selectors.buttonSetting.addEventListener("click", settingsEvents);
 selectors.settingsCancel.addEventListener("click", settingsEvents);
 
-// events for 'show more' button and calculation of remaining books loadable
+// Events for "Show more" button and calculation of remaining books loadable
 selectors.dataListButton.innerHTML =
   /* html */
   `<span>Show more</span> 
@@ -283,7 +280,7 @@ for (const [id, name] of Object.entries(authors)) {
 }
 selectors.searchAuthors.appendChild(authorList);
 
-// this event listener will preventDefault upon submission,
+// This event listener will preventDefault upon submission,
 // then creates an array of filtered books and displays
 // them on the webpage
 selectors.searchForm.addEventListener("submit", createSearchHTML);

@@ -260,7 +260,7 @@ option {
   color: rgba(var(--color-dark), 0.4);
 }
 
-/* overlay */
+/* overlay 
 
 .overlay {
   position: fixed;
@@ -425,7 +425,7 @@ option {
   left: 0;
   height: 100vh;
   width: 100vw;
-}
+} */
 
 /* backdrop */
 
