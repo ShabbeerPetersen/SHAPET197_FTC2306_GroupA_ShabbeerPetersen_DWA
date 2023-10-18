@@ -1,22 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.0/cdn/themes/light.css" />
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.0/cdn/shoelace-autoloader.js"></script>
-    <link rel="stylesheet" href="styles.css"/>
-    <script src="scripts.js" type="module" defer></script>
-    <title>Tally Count App</title>
-</head>
-<body>
-    <sl-card class="app">
-        <h1 slot="header">Tally Count App</h1>
-        <p data-key="number">0</p>
-        <div slot="footer">
-            <button data-key="add">+</button>
-            <button data-key="subtract">-</button>
-        </div>
-    </sl-card>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,500;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="stylesheet_IWA1.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/dark.css"
+    />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace-autoloader.js"
+    ></script>
+    <script src="script_IWA1.js" defer></script>
+    <title>Tally Count</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="header__title">Tally Count</h1>
+    </header>
+
+    <aside class="controls">
+      <label>
+        <span>Display</span>
+        <select>
+          <option>Single</option>
+          <option>Multiple</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Counter</span>
+        <select>
+          <option>Counter 1</option>
+          <option>Counter 2</option>
+          <option>Counter 3</option>
+        </select>
+      </label>
+      <button>Settings</button>
+    </aside>
+
+    <main class="counter">
+      <sl-input
+        class="counter__value"
+        data-key="number"
+        readonly
+        value="0"
+      ></sl-input>
+      <div class="counter__actions">
+        <sl-button class="counter__button" data-key="subtract">-</sl-button>
+        <sl-button class="counter__button" data-key="add">+</sl-button>
+        <sl-button class="counter__button" data-key="reset">Reset</sl-button>
+      </div>
+    </main>
+    <footer class="footer">
+      Inspired by
+      <a class="footer__link" href="https://tallycount.app/" target="_blank"
+        >Tally Count</a
+      >. Note that this is merely a student practice project.
+    </footer>
+  </body>
 </html>
