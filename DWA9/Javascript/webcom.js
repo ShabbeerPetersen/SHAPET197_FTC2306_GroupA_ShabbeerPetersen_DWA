@@ -1,9 +1,7 @@
-//@ts-check
+import { books, authors } from "./data.js"
+import { selectors } from "./functions.js";
 
-// import { books, authors } from "./data.js";
-// import { selectors } from "./scripts.js";
-
-const template = document.createElement("template");
+const template = document.createElement("template")
 template.innerHTML = `
 <style>
 .preview {
@@ -240,61 +238,68 @@ template.innerHTML = `
         <button class="overlay__button overlay__button_primary" data-list-close>Close</button>
       </div>
     </dialog>
-`;
+`
 
-class Component extends HTMLElement {
-  constructor() {
-    super();
-    const shadow = this.attachShadow({ mode: "open" });
-    shadow.append(template.content.cloneNode(true));
-    shadow.querySelector("[data-list-image]").src = dataObje.image;
-    shadow.querySelector("[data-list-blur]").src = dataObje.image;
-    shadow.querySelector("[data-list-title]").innerText = dataObje.previewTitle;
-    shadow.querySelector("[data-list-subtitle]").innerText =
-      dataObje.previewSubtitle;
-    shadow.querySelector("[data-list-description]").innerText =
-      dataObje.previewDescription;
-  }
+
+
+export class Component extends HTMLElement {
+
+    constructor() {
+        super()
+        const shadow = this.attachShadow({ mode: "open" })
+        shadow.append(template.content.cloneNode(true))
+        shadow.querySelector("[data-list-image]").src = dataObje.image
+        shadow.querySelector("[data-list-blur]").src = dataObje.image
+        shadow.querySelector("[data-list-title]").innerText = dataObje.previewTitle
+        shadow.querySelector("[data-list-subtitle]").innerText = dataObje.previewSubtitle
+        shadow.querySelector("[data-list-description]").innerText = dataObje.previewDescription
+        
+    }
 }
 
-customElements.define("single-preview", Component);
+customElements.define("single-preview", Component)
+
 
 const dataObje = {
-  image: undefined,
-  previewTitle: undefined,
-  previewSubtitle: undefined,
-  previewDescription: undefined,
-};
-
-// This function will open up a preview of the targeted book
-export const viewBook = (event) => {
-  const { target } = event;
-  if (selectors.bookView.open === false) {
-    selectors.bookView.showModal();
-  } else if (target === selectors.bookCloseView) {
-    selectors.bookView.close();
-  }
-  for (const book of books) {
-    if (
-      target.getAttribute("data-preview") === book.id ||
-      target.parentNode.parentNode.getAttribute("data-preview") === book.id ||
-      target.parentNode.getAttribute("data-preview") === book.id
-    ) {
-      selectors.bookImageView.src = book.image;
-      selectors.viewBlur.src = book.image;
-      selectors.bookTitleView.textContent = book.title;
-      selectors.bookSubtitleView.textContent = `${
-        authors[book.author]
-      } (${new Date(book.published).getFullYear()})`;
-      selectors.bookDescriptionView.textContent = book.description;
-      dataObje.image = book.image;
-      dataObje.previewTitle = book.title;
-      dataObje.previewSubtitle = `${authors[book.author]} (${new Date(
-        book.published
-      ).getFullYear()})`;
-      dataObje.previewDescription = book.description;
-      document.body.innerHTML = `<single-preview></single-preview>`;
+    image: undefined,
+    previewTitle: undefined,
+    previewSubtitle: undefined,
+    previewDescription: undefined
+}
+  
+export const singleBookPreview = (event) => {
+    const { target } = event;
+    if (selectors.bookPreview.open === false) {
+    selectors.bookPreview.showModal();
+  } else if (target === selectors.bookPreviewClose) {
+    selectors.bookPreview.close();
     }
-  }
-  console.log(dataObje);
+    for (const book of books) {
+        if (
+          target.getAttribute("data-preview") === book.id ||
+          target.parentNode.parentNode.getAttribute("data-preview") === book.id ||
+          target.parentNode.getAttribute("data-preview") === book.id
+        ) {
+          selectors.bookPreviewImage.src = book.image;
+          selectors.bookPreviewBlur.src = book.image;
+          selectors.bookPreviewTitle.textContent = book.title;
+          selectors.bookPreviewSubtitle.textContent = `${
+            authors[book.author]
+          } (${new Date(book.published).getFullYear()})`;
+          selectors.bookPreviewDescription.textContent = book.description;
+
+          dataObje.image = book.image;
+          dataObje.previewTitle = book.title
+          dataObje.previewSubtitle = `${
+           authors[book.author]
+        } (${new Date(book.published).getFullYear()})`
+          dataObje.previewDescription = book.description
+            document.body.innerHTML = `<single-preview></single-preview>`
+            
+    console.log(bookCard)
+        }
+      
+    }
+    
+  console.log(dataObje)
 };
