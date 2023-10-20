@@ -234,8 +234,6 @@ export const singleBookPreview = (event) => {
       ).getFullYear()})`;
       dataObje.previewDescription = book.description;
       document.body.innerHTML = `<single-preview></single-preview>`;
-
-      console.log(bookCard);
     }
   }
 
