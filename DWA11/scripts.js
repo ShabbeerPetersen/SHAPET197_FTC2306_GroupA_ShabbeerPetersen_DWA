@@ -1,5 +1,5 @@
 // Reducer function
-function decrementCounter(state = 0, action) {
+function counterReducer(state = 0, action) {
   // The reducer function takes the current state and an action as parameters.
 
   switch (action.type) {
@@ -20,21 +20,22 @@ function decrementCounter(state = 0, action) {
 
 // Store
 const store = {
-  state: 0, // Initialize the state to 0.
-  listeners: [], // An array to hold listener functions.
+  state: 0,
+  listeners: [],
 
+  // Method to get the current state.
   getState() {
-    return this.state; // Method to get the current state.
+    return this.state;
   },
 
+  // Method to dispatch an action and update the state using the reducer.
   dispatch(action) {
-    // Method to dispatch an action and update the state using the reducer.
-    this.state = decrementCounter(this.state, action);
-    this.notifyListeners(); // Notify all subscribed listeners.
+    this.state = counterReducer(this.state, action);
+    this.notifyListeners();
   },
 
+  // Method to subscribe a listener function.
   subscribe(listener) {
-    // Method to subscribe a listener function.
     this.listeners.push(listener);
 
     // Return a function to unsubscribe the listener.
@@ -43,27 +44,21 @@ const store = {
     };
   },
 
+  // Method to notify all subscribed listeners.
   notifyListeners() {
-    // Method to notify all subscribed listeners.
     this.listeners.forEach((listener) => listener());
   },
 };
 
-// Scenario: Increment the counter by one
+// Scenarios
 console.log("Initial state:", store.getState()); // Output: 0
-console.log("");
 
-// Scenario: Increment the counter by one
 store.dispatch({ type: "ADD" });
 store.dispatch({ type: "ADD" });
 console.log("Current state:", store.getState()); // Output: 2
-console.log("");
 
-// Scenario: Decrement the counter by one
 store.dispatch({ type: "SUBTRACT" });
 console.log("Current state:", store.getState()); // Output: 1
-console.log("");
 
-// Scenario: Resetting the Tally Counter
 store.dispatch({ type: "RESET" });
 console.log("Current state:", store.getState()); // Output: 0
