@@ -1,0 +1,18 @@
+
+1: I use a forEach loop to iterate through the names array and log each name to the console. This task is straightforward, and I log each name individually.
+
+2: I use another forEach loop to combine the names with their matching provinces. I utilize the index parameter to access the corresponding province in the provinces array and log each name along with its matching province. For example, "Ashwin (Western Cape)".
+
+3: I create a new array called upperCaseProvinces using the map function. In this array, I transform each province name to uppercase.
+
+4: I use the map function to create a new array, numOfCharNames, which contains the character count of each name in the names array. For instance, "Ashwin" has 6 characters.
+
+5: In this task, I intend to sort the provinces array alphabetically. However, there's a comment indicating that "toSorted" is not a valid function in JavaScript. I can replace it with sort() to sort the provinces correctly.
+
+6: I use the filter function to remove provinces that contain the word "Cape." After filtering, I log the count of remaining provinces that meet the criteria.
+
+7: Using the map function, I create a new array, RemoveLetterArray, to check if each name contains the letter 'S'. This results in a boolean array indicating whether each name contains an 'S'.
+
+8: In this task, I transform the names and provinces arrays into an object called nameProvinceObject. I employ the reduce function, and for each name, I create a property in the object with the name as the key and the corresponding province as the value.
+
+Finally, I collect the results of all these tasks into an array called collected, and I use another forEach loop to log each result individually to the console.
