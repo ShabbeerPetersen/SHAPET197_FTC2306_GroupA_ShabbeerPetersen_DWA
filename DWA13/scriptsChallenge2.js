@@ -1,10 +1,10 @@
 const products = [
-  { product: "banana", price: "2" }, // Define an array of products with name and price
+  { product: "banana", price: "2" },
   { product: "mango", price: 6 },
-  { product: "potato", price: " " }, // Note: Some prices are empty or contain spaces
+  { product: "potato", price: " " },
   { product: "avocado", price: "8" },
   { product: "coffee", price: 10 },
-  { product: "tea", price: "" }, // Note: Some prices are empty strings
+  { product: "tea", price: "" },
 ];
 
 const exerciseResults = []; // Initialize an array to store exercise results
