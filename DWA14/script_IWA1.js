@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const number = document.querySelector('[data-key="number"]');
-  const add = document.querySelector('[data-key="add"]');
-  const subtract = document.querySelector('[data-key="subtract"]');
-  const reset = document.querySelector('[data-key="reset"]');
+  const number = document.querySelector("counter__value");
+  const add = document.querySelector("counter__button__add");
+  const subtract = document.querySelector("counter__button__subtract");
+  const reset = document.querySelector("counter__button__reset");
 
   // Add an event listener for the "Add" button.
   add.addEventListener("click", () => {

@@ -1,6 +1,6 @@
-import { html, css, LitElement } from "/node_modules/lit";
+import { html, css, LitElement } from "../node_modules/lit";
 
-export class CounterApp extends LitElement {
+class CounterApp extends LitElement {
   static styles = css`
     .counter {
       background: var(--color-dark-grey);
@@ -95,13 +95,15 @@ export class CounterApp extends LitElement {
           readonly
         ></sl-input>
         <div class="counter__actions">
-          <sl-button class="counter__button" @click="${this.decrement}"
+          <sl-button
+            class="counter__button__subtract"
+            @click="${this.decrement}"
             >-</sl-button
           >
-          <sl-button class="counter__button" @click="${this.increment}"
+          <sl-button class="counter__button__add" @click="${this.increment}"
             >+</sl-button
           >
-          <sl-button class="counter__button" @click="${this.reset}"
+          <sl-button class="counter__button__rest" @click="${this.reset}"
             >Reset</sl-button
           >
         </div>
